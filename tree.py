@@ -1,7 +1,10 @@
 import json
-from typing import Optional
+from re import Match
+from typing import Optional, AnyStr
+import re
 
 from custom_exceptions import NodeMissingError
+from custom_exceptions.not_exists_prefix_error import NotExistsPrefixError
 
 
 class Tree:
@@ -48,8 +51,15 @@ class Saplings:
     def __init__(self) -> None:
         self._saplings: dict[str, Tree] = {}
 
+    @staticmethod
+    def _get_prefix(name: str) -> str:
+        prefix: Optional[Match[AnyStr]] = re.search(r'^[a-zA-Z]+', name)
+        if prefix is None:
+            raise NotExistsPrefixError("Префикс отсутствует")
+        return prefix.group()
+
     def add_tree(self, root: Optional[str], child: str) -> None:
-        sapling_name: str = child[:1]
+        sapling_name: str = self._get_prefix(child)
         if root is None:
             tree: Tree = Tree(child)
             self._saplings[sapling_name] = tree

@@ -1,6 +1,7 @@
 import unittest
 
 from custom_exceptions import NodeMissingError
+from custom_exceptions import NotExistsPrefixError
 from tree import Saplings
 
 
@@ -89,6 +90,36 @@ class TestStringMethods(unittest.TestCase):
             ('a', 'a1')
         ]
         with self.assertRaises(NodeMissingError):
+            for node in nodes:
+                saplings.add_tree(*node)
+
+    def test_6_get_prefix(self) -> None:
+        saplings: Saplings = Saplings()
+        nodes: list[tuple] = [
+            (None, 'c'),
+            (None, 'ab'),
+            (None, 'cd'),
+            (None, 'imtree')
+        ]
+        answer: tuple = (
+            'c',
+            'ab',
+            'cd',
+            'imtree',
+        )
+        for node in nodes:
+            saplings.add_tree(*node)
+        self.assertEqual(tuple(saplings.dict().keys()), answer)
+
+    def test_6_get_failed_prefix(self) -> None:
+        saplings: Saplings = Saplings()
+        nodes: list[tuple] = [
+            (None, 'c'),
+            (None, 'ab'),
+            (None, '1cd'),
+            (None, 'imtree')
+        ]
+        with self.assertRaises(NotExistsPrefixError):
             for node in nodes:
                 saplings.add_tree(*node)
 
