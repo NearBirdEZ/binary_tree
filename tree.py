@@ -26,7 +26,7 @@ class Tree:
         elif child_value.startswith(self._right._root):
             self._right.append(root, child_value)
         else:
-            raise NodeMissingError("Пропущен узел: \"{root}\"")
+            raise NodeMissingError(f"Пропущен узел: \"{root}\"")
 
     def _fill_empty_child(self, root, child_value) -> "Tree":
         if root != self._root:
