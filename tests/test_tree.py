@@ -1,11 +1,10 @@
 import unittest
-from typing import Optional
 
 from custom_exceptions import NodeMissingError
 from tree import Tree
 
 
-class TestStringMethods(unittest.TestCase):
+class TestTree(unittest.TestCase):
     @staticmethod
     def _generate_tree(input_tree: list[tuple]) -> dict:
         tree: Tree = Tree()

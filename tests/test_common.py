@@ -3,7 +3,7 @@ import unittest
 from tree import create_tree_from_list
 
 
-class TestStringMethods(unittest.TestCase):
+class TestCommon(unittest.TestCase):
 
     def test_1_create_three_from_list(self) -> None:
         nodes: list = [

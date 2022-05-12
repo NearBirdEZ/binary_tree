@@ -5,7 +5,7 @@ from custom_exceptions import NotExistsPrefixError
 from tree import Saplings
 
 
-class TestStringMethods(unittest.TestCase):
+class TestSaplings(unittest.TestCase):
 
     def test_1_generate_sapling(self) -> None:
         saplings: Saplings = Saplings()
