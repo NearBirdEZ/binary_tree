@@ -68,9 +68,6 @@ class Saplings:
         else:
             self._saplings[sapling_name].append(root, child)
 
-    def get_first(self) -> Tree:
-        return next(iter(self._saplings.values()))
-
     def dict(self) -> dict:
         result: dict = {}
         for tree in self._saplings.values():
